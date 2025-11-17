@@ -16,6 +16,6 @@
     "48": "icon.svg",
     "128": "icon.svg"
   },
-  "permissions": ["storage", "tabs", "cookies", "scripting", "sidePanel"],
+  "permissions": ["storage"],
   "optional_permissions": ["sidePanel"]
 }
