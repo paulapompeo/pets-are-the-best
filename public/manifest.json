@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "Pets are the best",
+  "version": "1.0",
+  "description": "A Chrome extension celebrating pets!",
+  "action": {
+    "default_popup": "index.html",
+    "default_icon": {
+      "16": "icon.svg",
+      "48": "icon.svg",
+      "128": "icon.svg"
+    }
+  },
+  "icons": {
+    "16": "icon.svg",
+    "48": "icon.svg",
+    "128": "icon.svg"
+  },
+  "permissions": ["storage", "tabs", "cookies", "scripting", "sidePanel"],
+  "optional_permissions": ["sidePanel"]
+}
