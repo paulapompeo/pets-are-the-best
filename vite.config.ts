@@ -9,7 +9,7 @@ export default defineConfig({
   plugins: [
     react(),
     {
-      name: 'copy-manifest',
+      name: 'copy-manifest-and-background',
       closeBundle() {
         const distDir = resolve(__dirname, 'dist')
         if (!existsSync(distDir)) {
@@ -18,6 +18,10 @@ export default defineConfig({
         copyFileSync(
           resolve(__dirname, 'public/manifest.json'),
           resolve(distDir, 'manifest.json')
+        )
+        copyFileSync(
+          resolve(__dirname, 'public/background.js'),
+          resolve(distDir, 'background.js')
         )
       }
     }
