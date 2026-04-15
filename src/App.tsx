@@ -19,16 +19,31 @@ const petFacts: PetFact[] = [
   { emoji: "🐴", fact: "Horses can sleep both lying down and standing up!" }
 ];
 
+const linkedInPetTips = [
+  "🐾 Did you know? Having a pet photo on your LinkedIn profile increases connection requests by making you more approachable!",
+  "🐕 Fun fact: Many LinkedIn users work at pet-friendly companies — search 'dogs allowed' in job descriptions!",
+  "🐈 Pro tip: A cute pet in your background during video calls makes you more memorable in networking!",
+  "🐾 Pets reduce stress — take a break from scrolling LinkedIn and go hug your pet!",
+];
+
 function App() {
   const [currentFact, setCurrentFact] = useState<PetFact>(petFacts[0]);
   const [petCount, setPetCount] = useState<number>(0);
+  const [isOnLinkedIn, setIsOnLinkedIn] = useState<boolean>(false);
+  const [linkedInTip] = useState<string>(
+    linkedInPetTips[Math.floor(Math.random() * linkedInPetTips.length)]
+  );
 
   useEffect(() => {
-    // Load pet count from Chrome storage
     chrome.storage.local.get(['petCount'], (result) => {
       if (result.petCount) {
         setPetCount(result.petCount);
       }
+    });
+
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+      const url = tabs[0]?.url ?? '';
+      setIsOnLinkedIn(url.includes('linkedin.com'));
     });
   }, []);
 
@@ -49,6 +64,16 @@ function App() {
         <h1>🐾 Pets are the Best! 🐾</h1>
         <p className="subtitle">Your daily dose of pet love</p>
       </div>
+
+      {isOnLinkedIn && (
+        <div className="linkedin-banner">
+          <div className="linkedin-badge">
+            <span className="linkedin-icon">in</span>
+            LinkedIn detected!
+          </div>
+          <p className="linkedin-tip">{linkedInTip}</p>
+        </div>
+      )}
       
       <div className="pet-card">
         <div className="pet-emoji">{currentFact.emoji}</div>
