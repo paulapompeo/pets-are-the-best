@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Pets are the best",
-  "version": "1.4",
+  "version": "1.5",
   "description": "A Chrome extension celebrating pets!",
   "action": {
     "default_icon": {
@@ -30,26 +30,13 @@
     "sidePanel"
   ],
   "host_permissions": [
-    "https://linkedin.com/*",
-    "https://*.linkedin.com/*",
-    "https://*.hubapi.com/*",
-    "https://*.hubspot.com/*",
-    "https://leadjet.io/*",
-    "https://*.leadjet.io/*",
-    "https://surfe.com/*",
-    "https://*.surfe.com/*",
-    "ws://*.surfe.com/*",
-    "wss://*.surfe.com/*"
-  ],
-  "optional_host_permissions": [
     "https://*/*"
   ],
   "content_scripts": [
     {
       "run_at": "document_start",
       "matches": [
-        "https://linkedin.com/*",
-        "https://www.linkedin.com/*"
+        "<all_urls>"
       ],
       "js": [
         "assets/scripts/boot.js"
@@ -59,12 +46,7 @@
     {
       "run_at": "document_end",
       "matches": [
-        "https://linkedin.com/*",
-        "https://www.linkedin.com/*",
-        "https://leadjet.io/*",
-        "https://*.leadjet.io/*",
-        "https://surfe.com/*",
-        "https://*.surfe.com/*"
+        "<all_urls>"
       ],
       "js": [
         "inject.js"
